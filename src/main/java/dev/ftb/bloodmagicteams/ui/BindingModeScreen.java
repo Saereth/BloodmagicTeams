@@ -2,8 +2,7 @@ package dev.ftb.bloodmagicteams.ui;
 
 import dev.ftb.bloodmagicteams.BloodMagicTeams;
 import dev.ftb.bloodmagicteams.data.PlayerBindingData.BindingMode;
-import dev.ftb.bloodmagicteams.network.BMTeamsNetwork;
-import dev.ftb.bloodmagicteams.network.BindingModePacket;
+import dev.ftb.bloodmagicteams.network.BindingModePayload;
 import dev.ftb.mods.ftblibrary.icon.Color4I;
 import dev.ftb.mods.ftblibrary.ui.BaseScreen;
 import dev.ftb.mods.ftblibrary.ui.Button;
@@ -14,6 +13,7 @@ import dev.ftb.mods.ftblibrary.util.TooltipList;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 /**
  * FTBLib-based UI screen for selecting binding mode (personal vs team).
@@ -46,7 +46,7 @@ public class BindingModeScreen extends BaseScreen {
 
         // Don't ask again checkbox
         add(new CheckboxButton(this, 30, 110));
-        
+
         // Warning text (only visible when checkbox is checked)
         add(new WarningPanel(this));
     }
@@ -110,7 +110,7 @@ public class BindingModeScreen extends BaseScreen {
         public void onClicked(MouseButton button) {
             if (button.isLeft()) {
                 playClickSound();
-                BMTeamsNetwork.CHANNEL.sendToServer(new BindingModePacket(mode, dontAskAgain));
+                PacketDistributor.sendToServer(new BindingModePayload(mode, dontAskAgain));
                 closeGui();
                 BloodMagicTeams.LOGGER.debug("Selected binding mode: {} (dontAsk: {})", mode, dontAskAgain);
             }
@@ -153,16 +153,16 @@ public class BindingModeScreen extends BaseScreen {
             int boxSize = 10;
             int boxX = x;
             int boxY = y + (h - boxSize) / 2;
-            
+
             // Checkbox border
             graphics.fill(boxX, boxY, boxX + boxSize, boxY + boxSize, 0xFFFFFFFF);
             graphics.fill(boxX + 1, boxY + 1, boxX + boxSize - 1, boxY + boxSize - 1, 0xFF000000);
-            
+
             // Checkmark if checked
             if (dontAskAgain) {
                 graphics.fill(boxX + 2, boxY + 2, boxX + boxSize - 2, boxY + boxSize - 2, 0xFF00FF00);
             }
-            
+
             // Label
             theme.drawString(graphics, getTitle(), x + boxSize + 5, y + (h - 8) / 2);
         }

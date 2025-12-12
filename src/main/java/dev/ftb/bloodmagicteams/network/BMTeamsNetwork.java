@@ -1,12 +1,8 @@
 package dev.ftb.bloodmagicteams.network;
 
 import dev.ftb.bloodmagicteams.BloodMagicTeams;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.network.NetworkDirection;
-import net.minecraftforge.network.NetworkRegistry;
-import net.minecraftforge.network.simple.SimpleChannel;
-
-import java.util.Optional;
+import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
+import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
 /**
  * Network handler for BloodMagic Teams packets.
@@ -14,36 +10,24 @@ import java.util.Optional;
 public class BMTeamsNetwork {
     private static final String PROTOCOL_VERSION = "1";
 
-    public static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(
-            new ResourceLocation(BloodMagicTeams.MOD_ID, "main"),
-            () -> PROTOCOL_VERSION,
-            PROTOCOL_VERSION::equals,
-            PROTOCOL_VERSION::equals
-    );
+    public static void registerPayloads(RegisterPayloadHandlersEvent event) {
+        PayloadRegistrar registrar = event.registrar(BloodMagicTeams.MOD_ID)
+                .versioned(PROTOCOL_VERSION);
 
-    private static int packetId = 0;
-
-    public static void init() {
         // Client -> Server: Player's binding mode selection
-        CHANNEL.registerMessage(
-                packetId++,
-                BindingModePacket.class,
-                BindingModePacket::encode,
-                BindingModePacket::decode,
-                BindingModePacket::handle,
-                Optional.of(NetworkDirection.PLAY_TO_SERVER)
+        registrar.playToServer(
+                BindingModePayload.TYPE,
+                BindingModePayload.STREAM_CODEC,
+                BindingModePayload::handle
         );
 
         // Server -> Client: Open binding mode selection screen
-        CHANNEL.registerMessage(
-                packetId++,
-                OpenBindingScreenPacket.class,
-                OpenBindingScreenPacket::encode,
-                OpenBindingScreenPacket::decode,
-                OpenBindingScreenPacket::handle,
-                Optional.of(NetworkDirection.PLAY_TO_CLIENT)
+        registrar.playToClient(
+                OpenBindingScreenPayload.TYPE,
+                OpenBindingScreenPayload.STREAM_CODEC,
+                OpenBindingScreenPayload::handle
         );
 
-        BloodMagicTeams.LOGGER.debug("Network packets registered");
+        BloodMagicTeams.LOGGER.debug("Network payloads registered");
     }
 }

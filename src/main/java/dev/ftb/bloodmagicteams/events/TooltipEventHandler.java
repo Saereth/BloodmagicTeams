@@ -5,10 +5,10 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.event.entity.player.ItemTooltipEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import wayoftime.bloodmagic.common.item.IBindable;
-import wayoftime.bloodmagic.core.data.Binding;
+import wayoftime.bloodmagic.common.datacomponent.Binding;
 
 import java.util.List;
 import java.util.UUID;
@@ -31,7 +31,7 @@ public class TooltipEventHandler {
             return;
         }
 
-        UUID ownerUuid = binding.getOwnerId();
+        UUID ownerUuid = binding.uuid();
         if (ownerUuid == null) {
             return;
         }
@@ -49,7 +49,7 @@ public class TooltipEventHandler {
 
         // Find and replace the owner line in the tooltip
         List<Component> tooltip = event.getToolTip();
-        String storedName = binding.getOwnerName();
+        String storedName = binding.name();
 
         for (int i = 0; i < tooltip.size(); i++) {
             Component line = tooltip.get(i);

@@ -2,7 +2,7 @@ package dev.ftb.bloodmagicteams.integration;
 
 import dev.ftb.bloodmagicteams.BloodMagicTeams;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraftforge.fml.ModList;
+import net.neoforged.fml.ModList;
 
 import javax.annotation.Nullable;
 import java.util.Optional;

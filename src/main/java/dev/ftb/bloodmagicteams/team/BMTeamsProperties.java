@@ -18,7 +18,7 @@ import java.util.Map;
 public class BMTeamsProperties {
 
     public static final ResourceLocation BINDING_RESTRICTION_ID =
-            new ResourceLocation(BloodMagicTeams.MOD_ID, "binding_restriction");
+            ResourceLocation.fromNamespaceAndPath(BloodMagicTeams.MOD_ID, "binding_restriction");
 
     // Property for binding restriction - uses EnumProperty for dropdown UI
     public static final EnumProperty BINDING_RESTRICTION = new EnumProperty(

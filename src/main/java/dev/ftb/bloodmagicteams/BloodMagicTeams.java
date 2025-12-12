@@ -6,14 +6,13 @@ import dev.ftb.bloodmagicteams.events.TeamEventHandler;
 import dev.ftb.bloodmagicteams.events.TooltipEventHandler;
 import dev.ftb.bloodmagicteams.integration.TeamsIntegration;
 import dev.ftb.bloodmagicteams.network.BMTeamsNetwork;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegisterCommandsEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -22,30 +21,28 @@ public class BloodMagicTeams {
     public static final String MOD_ID = "bloodmagicteams";
     public static final Logger LOGGER = LogManager.getLogger();
 
-    public BloodMagicTeams() {
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-
+    public BloodMagicTeams(IEventBus modEventBus, ModContainer container) {
         // Register config
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, BMTeamsConfig.SPEC);
+        container.registerConfig(ModConfig.Type.COMMON, BMTeamsConfig.SPEC);
 
         // Register setup event
         modEventBus.addListener(this::commonSetup);
 
         // Register event handlers
-        MinecraftForge.EVENT_BUS.register(new TeamEventHandler());
-        MinecraftForge.EVENT_BUS.register(new TooltipEventHandler());
-        
+        NeoForge.EVENT_BUS.register(new TeamEventHandler());
+        NeoForge.EVENT_BUS.register(new TooltipEventHandler());
+
         // Register command event
-        MinecraftForge.EVENT_BUS.addListener(this::registerCommands);
+        NeoForge.EVENT_BUS.addListener(this::registerCommands);
+
+        // Register network payloads
+        modEventBus.addListener(BMTeamsNetwork::registerPayloads);
 
         LOGGER.info("BloodMagic Teams loaded - FTB Teams integration for Soul Networks");
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            // Initialize network packets
-            BMTeamsNetwork.init();
-
             // Check for FTB Teams and register properties
             if (TeamsIntegration.isTeamsLoaded()) {
                 TeamsIntegration.registerProperties();

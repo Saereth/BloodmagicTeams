@@ -1,15 +1,15 @@
 package dev.ftb.bloodmagicteams.config;
 
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
 public class BMTeamsConfig {
-    public static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
-    public static final ForgeConfigSpec SPEC;
+    public static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
+    public static final ModConfigSpec SPEC;
 
-    public static final ForgeConfigSpec.BooleanValue ENABLE_TEAM_BINDING;
-    public static final ForgeConfigSpec.BooleanValue SHOW_BINDING_UI;
-    public static final ForgeConfigSpec.BooleanValue ALLOW_BINDING_MODE_COMMAND;
-    public static final ForgeConfigSpec.EnumValue<DefaultBindingMode> DEFAULT_BINDING_MODE;
+    public static final ModConfigSpec.BooleanValue ENABLE_TEAM_BINDING;
+    public static final ModConfigSpec.BooleanValue SHOW_BINDING_UI;
+    public static final ModConfigSpec.BooleanValue ALLOW_BINDING_MODE_COMMAND;
+    public static final ModConfigSpec.EnumValue<DefaultBindingMode> DEFAULT_BINDING_MODE;
 
     static {
         BUILDER.comment("BloodMagic Teams Configuration");
