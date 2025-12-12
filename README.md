@@ -1,10 +1,10 @@
 # Blood Magic Teams
 
-[![Minecraft](https://img.shields.io/badge/Minecraft-1.20.1-green.svg)](https://minecraft.net)
-[![Forge](https://img.shields.io/badge/Forge-47.2.0+-orange.svg)](https://files.minecraftforge.net)
+[![Minecraft](https://img.shields.io/badge/Minecraft-1.21.1-green.svg)](https://minecraft.net)
+[![NeoForge](https://img.shields.io/badge/NeoForge-21.1.83+-orange.svg)](https://neoforged.net)
 [![License](https://img.shields.io/badge/License-CC%20BY%204.0-blue.svg)](LICENSE)
 
-A Minecraft Forge mod that integrates [Blood Magic](https://github.com/WayofTime/BloodMagic) with [FTB Teams](https://github.com/FTBTeam/FTB-Teams), allowing players to bind items to their team's shared LP network.
+A Minecraft NeoForge mod that integrates [Blood Magic](https://github.com/WayofTime/BloodMagic) with [FTB Teams](https://github.com/FTBTeam/FTB-Teams), allowing players to bind items to their team's shared LP network.
 
 ## Overview
 
@@ -25,7 +25,7 @@ Blood Magic Teams enables cooperative Blood Magic gameplay by allowing team memb
 
 | Mod | Type | Link |
 |-----|------|------|
-| Blood Magic | Required | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/blood-magic) |
+| Blood Magic | Required | [GitHub Releases](https://github.com/Saereth/BloodMagic/releases) |
 | FTB Teams | Required | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/ftb-teams-forge) |
 | FTB Library | Required | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/ftb-library-forge) |
 | Architectury API | Required | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/architectury-api) |
@@ -35,20 +35,30 @@ Blood Magic Teams enables cooperative Blood Magic gameplay by allowing team memb
 | Command | Description |
 |---------|-------------|
 | `/bloodmagicteams status` | View your current binding settings |
-| `/bloodmagicteams preference personal` | Set default to personal binding |
-| `/bloodmagicteams preference team` | Set default to team binding |
-| `/bloodmagicteams preference reset` | Clear preference and ask again |
+| `/bloodmagicteams self` | Set default to personal binding |
+| `/bloodmagicteams team` | Set default to team binding |
+| `/bloodmagicteams reset` | Clear preference and ask again |
 
 ## Configuration
 
-Configuration file located at `config/bloodmagicteams-server.toml`:
+Configuration file located at `config/bloodmagicteams-common.toml`:
 
 ```toml
-# Enable team binding functionality
+[general]
+# Enable team-level soul network binding
 enableTeamBinding = true
 
-# Show the binding selection UI
+# Show UI when binding items to choose between personal and team binding
 showBindingUI = true
+
+# Allow players to use /bmteams bindingmode command to set their default binding mode
+allowBindingModeCommand = true
+
+# Default binding mode when UI is disabled or player hasn't set a preference
+# PERSONAL = bind to player's personal soul network
+# TEAM = bind to team's shared soul network
+# ASK = always show the binding UI
+defaultBindingMode = "ASK"
 ```
 
 ## How It Works
