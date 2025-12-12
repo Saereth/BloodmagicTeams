@@ -1,0 +1,24 @@
+{
+  "name": "Configuration",
+  "icon": "minecraft:writable_book",
+  "category": "bloodmagicteams:teams",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "BloodMagic Teams can be configured through the $(thing)bloodmagicteams-common.toml$() file in your config folder, and through FTB Teams settings.$(br2)$(l)Config File Options:$()"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)enableTeamBinding$()$(br)Default: $(#080)true$()$(br)Enable or disable the team soul network binding feature entirely.$(br2)$(l)showBindingUI$()$(br)Default: $(#080)true$()$(br)Show the binding selection UI when binding items. If false, uses the default binding mode."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)allowBindingModeCommand$()$(br)Default: $(#080)true$()$(br)Allow players to use the /bloodmagicteams command to set their binding preference.$(br2)$(l)defaultBindingMode$()$(br)Default: $(thing)ASK$()$(br)Server default when player has no preference set."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)FTB Team Settings$()$(br2)Team owners and officers can configure binding restrictions in their team settings:$(br2)$(thing)Soul Network Binding Access$()$(li)$(#080)All Members$() - Anyone in the team can bind items$(li)$(#080)Officers Only$() - Only officers and owner can bind$(br2)Find this in the FTB Teams settings menu."
+    }
+  ]
+}

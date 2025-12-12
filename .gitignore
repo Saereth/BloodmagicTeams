@@ -1,0 +1,35 @@
+# Gradle
+.gradle/
+build/
+out/
+repo/
+gradle/
+gradlew
+gradlew.bat
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.qodo/
+
+# Runtime
+run/
+logs/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Generated
+src/generated/
+
+# Markdown files (except essential docs)
+*.md
+!README.md
+!LICENSE.md
+!CONTRIBUTING.md
+metadata/

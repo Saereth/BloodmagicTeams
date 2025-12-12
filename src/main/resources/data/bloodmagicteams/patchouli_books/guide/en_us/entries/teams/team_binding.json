@@ -1,0 +1,28 @@
+{
+  "name": "Team Binding",
+  "icon": "bloodmagic:master_blood_orb",
+  "category": "bloodmagicteams:teams",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "When $(thing)BloodMagic Teams$() is installed alongside $(thing)FTB Teams$(), you gain the ability to bind Blood Orbs and Sigils to your $(item)Team's Soul Network$() instead of your personal one.$(br2)This allows all team members to contribute to and draw from a shared pool of Life Essence."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)How It Works$()$(br)When you bind a Blood Orb while in a team, you'll see a selection screen:$(li)$(thing)Personal$() - Binds to your individual Soul Network$(li)$(thing)Team$() - Binds to your FTB Team's shared Soul Network$(br2)If you're not in a team, items will automatically bind to your personal network without prompting."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Remember My Choice$()$(br)Check the $(thing)Don't ask again$() box to save your preference. This will automatically bind items using your chosen method.$(br2)To change this later, use:$(br)$(#800)/bloodmagicteams reset$()$(br2)This will clear your saved preference and show the selection screen again."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Commands$()$(br)$(#800)/bloodmagicteams self$()$(br)Always bind to your personal network$(br2)$(#800)/bloodmagicteams team$()$(br)Always bind to your current team$(br2)$(#800)/bloodmagicteams status$()$(br)Show your current binding preference$(br2)$(#800)/bloodmagicteams reset$()$(br)Clear preference, ask each time"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Shared Benefits$()$(br)With team binding:$(li)All team members' self-sacrifices contribute to the same pool$(li)Altars can be used by any team member$(li)Sigils draw from the shared network$(li)Rituals use the team's collective Life Essence$(br2)This is ideal for collaborative modpack play where teams want to progress together in Blood Magic."
+    }
+  ]
+}
