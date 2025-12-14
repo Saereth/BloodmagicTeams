@@ -29,7 +29,9 @@ src/generated/
 
 # Markdown files (except essential docs)
 *.md
+!metadata/changelogs/*.md
 !README.md
 !LICENSE.md
 !CONTRIBUTING.md
-metadata/
+
+
