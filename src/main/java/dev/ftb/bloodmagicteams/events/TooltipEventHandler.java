@@ -3,7 +3,6 @@ package dev.ftb.bloodmagicteams.events;
 import dev.ftb.bloodmagicteams.integration.TeamsIntegration;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
@@ -14,7 +13,9 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * Handles tooltip modifications to show current team names for team-bound items.
+ * Handles tooltip modifications for team-bound Blood Magic items.
+ * Blood Magic handles showing the binding info itself - we just add team indicators
+ * and update team names if they've changed.
  */
 public class TooltipEventHandler {
 
@@ -27,8 +28,8 @@ public class TooltipEventHandler {
         }
 
         Binding binding = bindable.getBinding(stack);
-        if (binding == null) {
-            return;
+        if (binding == null || binding.isEmpty()) {
+            return; // Blood Magic handles unbound items
         }
 
         UUID ownerUuid = binding.uuid();
@@ -36,53 +37,50 @@ public class TooltipEventHandler {
             return;
         }
 
-        // Check if this is a team-bound item
+        // Only process team-bound items
         if (!TeamsIntegration.isTeamUuid(ownerUuid)) {
-            return;
+            return; // Personal binding - Blood Magic handles it
         }
 
-        // Get the current team name
-        String currentTeamName = TeamsIntegration.getTeamNameByUuid(ownerUuid);
-        if (currentTeamName == null) {
-            currentTeamName = Component.translatable("bloodmagicteams.tooltip.unknown_team").getString();
-        }
-
-        // Find and replace the owner line in the tooltip
         List<Component> tooltip = event.getToolTip();
         String storedName = binding.name();
 
-        for (int i = 0; i < tooltip.size(); i++) {
-            Component line = tooltip.get(i);
-            String lineString = line.getString();
+        // Get the current team name (may have changed since binding)
+        String currentTeamName = TeamsIntegration.getTeamNameByUuid(ownerUuid);
+        if (currentTeamName == null) {
+            currentTeamName = storedName; // Fall back to stored name
+        }
 
-            // BloodMagic shows "Current owner: <name>" or similar
-            // We need to find the line with the stored name and replace it with the current team name
-            if (storedName != null && lineString.contains(storedName)) {
-                // Replace with dynamic team name and add team indicator
-                String newLineString = lineString.replace(storedName, currentTeamName);
-                MutableComponent newLine = Component.literal(newLineString)
-                        .withStyle(line.getStyle());
-                tooltip.set(i, newLine);
-
-                // Add a team indicator line if not already present
-                boolean hasTeamIndicator = false;
-                for (Component c : tooltip) {
-                    if (c.getString().contains("[") && c.getString().contains("]")) {
-                        // Check for our team indicator
-                        String indicatorText = Component.translatable("bloodmagicteams.tooltip.team_bound").getString();
-                        if (c.getString().contains(indicatorText) || c.getString().contains("Team")) {
-                            hasTeamIndicator = true;
-                            break;
-                        }
-                    }
+        // Find and update the owner line if team name changed
+        if (!currentTeamName.equals(storedName)) {
+            for (int i = 0; i < tooltip.size(); i++) {
+                String lineStr = tooltip.get(i).getString();
+                if (lineStr.contains(storedName)) {
+                    // Replace with current team name
+                    tooltip.set(i, Component.translatable("tooltip.bloodmagic.current_owner", currentTeamName)
+                            .withStyle(ChatFormatting.GRAY));
+                    break;
                 }
-
-                if (!hasTeamIndicator) {
-                    tooltip.add(i + 1, Component.translatable("bloodmagicteams.tooltip.team_bound")
-                            .withStyle(ChatFormatting.DARK_PURPLE));
-                }
-                break;
             }
+        }
+
+        // Add team indicator if not already present
+        String teamIndicator = Component.translatable("bloodmagicteams.tooltip.team_bound").getString();
+        boolean hasIndicator = tooltip.stream()
+                .anyMatch(c -> c.getString().contains(teamIndicator));
+
+        if (!hasIndicator) {
+            // Find where to insert (after the owner line)
+            int insertIndex = 1;
+            for (int i = 0; i < tooltip.size(); i++) {
+                if (tooltip.get(i).getString().contains(currentTeamName) ||
+                    tooltip.get(i).getString().contains(storedName)) {
+                    insertIndex = i + 1;
+                    break;
+                }
+            }
+            tooltip.add(insertIndex, Component.translatable("bloodmagicteams.tooltip.team_bound")
+                    .withStyle(ChatFormatting.DARK_PURPLE));
         }
     }
 }
