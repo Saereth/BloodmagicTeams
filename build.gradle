@@ -96,8 +96,8 @@ configurations {
 }
 
 dependencies {
-    // BloodMagic - hard dependency (from mavenLocal, run `./gradlew publishToMavenLocal` in BloodMagic project first)
-    implementation("com.example.examplemod:BloodMagic:3.4.0-1-beta")
+    // BloodMagic - hard dependency (from local libs folder)
+    implementation files('libs/bloodmagicnv-3.4.0-3-beta.jar')
 
     // FTB Teams - hard dependency
     implementation("dev.ftb.mods:ftb-teams-neoforge:${ftb_teams_version}")
@@ -107,6 +107,10 @@ dependencies {
 
     // Architectury API - required by FTB mods
     implementation("dev.architectury:architectury-neoforge:${architectury_version}")
+
+    // Patchouli - required by Blood Magic for documentation
+    compileOnly("vazkii.patchouli:Patchouli:${patchouli_version}:api")
+    runtimeOnly("vazkii.patchouli:Patchouli:${patchouli_version}")
 
     // JEI - optional for recipe display
     compileOnly("mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}")

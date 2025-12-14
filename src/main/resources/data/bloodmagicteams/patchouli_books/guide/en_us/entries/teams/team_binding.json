@@ -1,6 +1,6 @@
 {
   "name": "Team Binding",
-  "icon": "bloodmagic:master_blood_orb",
+  "icon": "bloodmagicnv:master_blood_orb",
   "category": "bloodmagicteams:teams",
   "sortnum": 1,
   "pages": [
