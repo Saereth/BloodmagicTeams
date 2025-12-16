@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "When $(thing)BloodMagic Teams$() is installed alongside $(thing)FTB Teams$(), you gain the ability to bind Blood Orbs and Sigils to your $(item)Team's Soul Network$() instead of your personal one.$(br2)This allows all team members to contribute to and draw from a shared pool of Life Essence."
+      "text": "When $(thing)BloodMagic Teams$() is installed alongside $(thing)FTB Teams$(), you gain the ability to bind Blood Orbs and Sigils to your $(item)Team's Soul Network$() instead of your personal one.$(br2)This allows all team members to contribute to and draw from a shared pool of $(thing)LP$()."
     },
     {
       "type": "patchouli:text",
@@ -22,7 +22,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "$(l)Shared Benefits$()$(br)With team binding:$(li)All team members' self-sacrifices contribute to the same pool$(li)Altars can be used by any team member$(li)Sigils draw from the shared network$(li)Rituals use the team's collective Life Essence$(br2)This is ideal for collaborative modpack play where teams want to progress together in Blood Magic."
+      "text": "$(l)Shared Benefits$()$(br)With team binding:$(li)All team members' self-sacrifices contribute to the same pool$(li)Altars can be used by any team member$(li)Sigils draw from the shared $(thing)LP$()$(li)Rituals use the team's collective $(thing)LP$()$(br2)This is ideal for collaborative modpack play where teams want to progress together in Blood Magic."
     }
   ]
 }
