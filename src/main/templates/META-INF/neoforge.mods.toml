@@ -25,9 +25,9 @@ versionRange="${minecraft_version_range}"
 ordering="NONE"
 side="BOTH"
 
-# Blood Magic dependency
+# Neo Vitae dependency
 [[dependencies.${mod_id}]]
-modId="bloodmagicnv"
+modId="neovitae"
 type="required"
 versionRange="*"
 ordering="AFTER"

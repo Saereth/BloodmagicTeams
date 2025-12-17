@@ -96,8 +96,8 @@ configurations {
 }
 
 dependencies {
-    // BloodMagic - hard dependency (from local libs folder)
-    implementation files('libs/bloodmagicnv-3.4.0-3-beta.jar')
+    // Neo Vitae - hard dependency (from local libs folder)
+    implementation files('libs/neovitae-3.4.0-3-beta.jar')
 
     // FTB Teams - hard dependency
     implementation("dev.ftb.mods:ftb-teams-neoforge:${ftb_teams_version}")

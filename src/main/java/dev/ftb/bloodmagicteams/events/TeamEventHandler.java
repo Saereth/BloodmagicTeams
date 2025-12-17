@@ -13,9 +13,9 @@ import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
-import wayoftime.bloodmagic.common.datacomponent.BMDataComponents;
-import wayoftime.bloodmagic.common.datacomponent.Binding;
-import wayoftime.bloodmagic.common.event.ItemBindEvent;
+import com.breakinblocks.neovitae.common.datacomponent.BMDataComponents;
+import com.breakinblocks.neovitae.common.datacomponent.Binding;
+import com.breakinblocks.neovitae.common.event.ItemBindEvent;
 
 import java.util.HashSet;
 import java.util.Optional;

@@ -6,8 +6,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
-import wayoftime.bloodmagic.common.item.IBindable;
-import wayoftime.bloodmagic.common.datacomponent.Binding;
+import com.breakinblocks.neovitae.common.item.IBindable;
+import com.breakinblocks.neovitae.common.datacomponent.Binding;
 
 import java.util.List;
 import java.util.UUID;

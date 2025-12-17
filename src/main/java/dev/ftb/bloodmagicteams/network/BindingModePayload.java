@@ -13,7 +13,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
-import wayoftime.bloodmagic.common.item.IBindable;
+import com.breakinblocks.neovitae.common.item.IBindable;
 
 /**
  * Payload sent from client to server when player selects a binding mode.

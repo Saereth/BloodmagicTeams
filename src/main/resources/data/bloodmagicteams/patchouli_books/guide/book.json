@@ -1,5 +1,5 @@
 {
-  "extend": "bloodmagicnv:guide",
+  "extend": "neovitae:guide",
   "name": "bloodmagicteams.patchouli.book.name",
   "landing_text": "bloodmagicteams.patchouli.book.landing"
 }
