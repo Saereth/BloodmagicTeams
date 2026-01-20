@@ -52,17 +52,27 @@ class TeamsIntegrationImpl {
     }
 
     static boolean isTeamUuid(UUID uuid) {
-        TeamManager manager = FTBTeamsAPI.api().getManager();
-        Optional<Team> team = manager.getTeamByID(uuid);
-        return team.isPresent() && !team.get().isPlayerTeam();
+        try {
+            TeamManager manager = FTBTeamsAPI.api().getManager();
+            Optional<Team> team = manager.getTeamByID(uuid);
+            return team.isPresent() && !team.get().isPlayerTeam();
+        } catch (NullPointerException e) {
+            // Manager not initialized yet (client-side before world load)
+            return false;
+        }
     }
 
     @Nullable
     static String getTeamNameByUuid(UUID teamUuid) {
-        return FTBTeamsAPI.api().getManager()
-                .getTeamByID(teamUuid)
-                .map(team -> team.getName().getString())
-                .orElse(null);
+        try {
+            return FTBTeamsAPI.api().getManager()
+                    .getTeamByID(teamUuid)
+                    .map(team -> team.getName().getString())
+                    .orElse(null);
+        } catch (NullPointerException e) {
+            // Manager not initialized yet (client-side before world load)
+            return null;
+        }
     }
 
     /**
