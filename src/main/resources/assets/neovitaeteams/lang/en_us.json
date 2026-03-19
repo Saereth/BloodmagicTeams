@@ -1,0 +1,43 @@
+{
+  "gui.neovitaeteams.binding_mode.title": "Soul Network Binding",
+  "gui.neovitaeteams.binding_mode.team": "Team: %s",
+  "gui.neovitaeteams.binding_mode.personal": "Personal Binding",
+  "gui.neovitaeteams.binding_mode.team_button": "Team Binding",
+  "gui.neovitaeteams.binding_mode.personal.tooltip": "Bind to your personal soul network",
+  "gui.neovitaeteams.binding_mode.team.tooltip": "Bind to your team's shared soul network",
+  "gui.neovitaeteams.binding_mode.dont_ask": "Don't ask again",
+  "gui.neovitaeteams.binding_mode.dont_ask.tooltip": "Remember this choice for future bindings",
+  "gui.neovitaeteams.binding_mode.reset_hint": "Use /neovitaeteams reset to change",
+
+  "commands.neovitaeteams.player_only": "This command can only be used by players",
+  "commands.neovitaeteams.not_on_team": "You are not on a team",
+  "commands.neovitaeteams.invalid_team_id": "Invalid team ID format",
+  "commands.neovitaeteams.team_not_found": "Team not found",
+  "commands.neovitaeteams.set_self": "Binding mode set to: Personal (all items will bind to your personal soul network)",
+  "commands.neovitaeteams.set_team": "Binding mode set to: Team %s (all items will bind to your team's soul network)",
+  "commands.neovitaeteams.set_specific_team": "Binding mode set to: Team %s (all items will bind to this team's soul network)",
+  "commands.neovitaeteams.reset_success": "Binding preferences reset. You will be prompted to choose next time you bind an item.",
+  "commands.neovitaeteams.status_ask": "Current binding mode: Ask each time",
+  "commands.neovitaeteams.status_self": "Current binding mode: Personal (automatic)",
+  "commands.neovitaeteams.status_team": "Current binding mode: Team (automatic)",
+  "commands.neovitaeteams.status_specific_team": "Current binding mode: Team %s (automatic)",
+
+  "tooltip.neovitaeteams.team_bound": "Team Bound: %s",
+  "tooltip.neovitaeteams.personal_bound": "Personal Bound",
+  "neovitaeteams.tooltip.team_bound": "[Team Bound]",
+  "neovitaeteams.tooltip.unknown_team": "Unknown Team",
+
+  "itemGroup.neovitaeteams": "Neo Vitae Teams",
+
+  "ftbteamsconfig.neovitaeteams": "Neo Vitae Teams",
+  "ftbteamsconfig.neovitaeteams.binding_restriction": "Binding Restriction",
+  "ftbteams.property.neovitaeteams.binding_restriction": "Soul Network Binding Access",
+  "ftbteams.property.neovitaeteams.binding_restriction.tooltip": "Who can bind items to the team's soul network",
+  "neovitaeteams.binding_restriction.member": "All Members",
+  "neovitaeteams.binding_restriction.officer": "Officers Only",
+
+  "neovitaeteams.error.not_officer": "Only team officers can bind to this team's soul network",
+
+  "neovitaeteams.patchouli.book.name": "Neo Vitae Teams Addon",
+  "neovitaeteams.patchouli.book.landing": "Team-based Soul Network documentation"
+}

@@ -109,7 +109,7 @@ dependencies {
     // Architectury API - required by FTB mods
     implementation("dev.architectury:architectury-neoforge:${architectury_version}")
 
-    // Patchouli - required by Blood Magic for documentation
+    // Patchouli - required by Neo Vitae for documentation
     compileOnly("vazkii.patchouli:Patchouli:${patchouli_version}:api")
     runtimeOnly("vazkii.patchouli:Patchouli:${patchouli_version}")
 

@@ -1,6 +1,6 @@
-# Contributing to BloodMagic Teams
+# Contributing to Neo Vitae Teams
 
-Thank you for your interest in contributing to BloodMagic Teams!
+Thank you for your interest in contributing to Neo Vitae Teams!
 
 ## Getting Started
 
@@ -39,20 +39,19 @@ Thank you for your interest in contributing to BloodMagic Teams!
 ## Project Structure
 
 ```
-src/main/java/dev/ftb/bloodmagicteams/
-├── BloodMagicTeams.java      # Main mod class
-├── config/                    # Configuration
-├── data/                      # Data storage (player preferences)
-├── events/                    # Event handlers
-├── integration/               # FTB Teams integration (soft dependency)
-├── network/                   # Network packets
-├── recipe/                    # Recipe handling
-└── ui/                        # FTBLib UI screens
+src/main/java/com/breakinblocks/neovitaeteams/
+├── NeoVitaeTeams.java       # Main mod class
+├── config/                   # Configuration
+├── data/                     # Data storage (player preferences)
+├── events/                   # Event handlers
+├── integration/              # FTB Teams integration (soft dependency)
+├── network/                  # Network packets
+└── ui/                       # FTBLib UI screens
 ```
 
 ## Testing
 
-- Test with both BloodMagic and FTB Teams installed
+- Test with both Neo Vitae and FTB Teams installed
 - Verify team binding works correctly
 - Test unbinding recipes in alchemy arrays
 - Check edge cases (leaving teams, offline players)

@@ -1,0 +1,5 @@
+{
+  "extend": "neovitae:guide",
+  "name": "neovitaeteams.patchouli.book.name",
+  "landing_text": "neovitaeteams.patchouli.book.landing"
+}
