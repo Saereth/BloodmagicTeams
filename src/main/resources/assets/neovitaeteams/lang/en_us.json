@@ -22,6 +22,12 @@
   "commands.neovitaeteams.status_team": "Current binding mode: Team (automatic)",
   "commands.neovitaeteams.status_specific_team": "Current binding mode: Team %s (automatic)",
 
+  "commands.neovitaeteams.network.query": "Team %s has %s LP in their Soul Network",
+  "commands.neovitaeteams.network.set": "Successfully set %s's Soul Network to %s LP",
+  "commands.neovitaeteams.network.add": "Successfully added %s LP to %s's Soul Network",
+  "commands.neovitaeteams.network.reset": "Successfully reset %s's Soul Network to 0 LP",
+  "commands.neovitaeteams.network.error": "Failed to access Soul Network data",
+
   "tooltip.neovitaeteams.team_bound": "Team Bound: %s",
   "tooltip.neovitaeteams.personal_bound": "Personal Bound",
   "neovitaeteams.tooltip.team_bound": "[Team Bound]",
