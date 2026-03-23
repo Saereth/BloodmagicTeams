@@ -1,9 +1,9 @@
-package dev.ftb.bloodmagicteams.ui;
+package com.breakinblocks.bloodmagicteams.ui;
 
-import dev.ftb.bloodmagicteams.BloodMagicTeams;
-import dev.ftb.bloodmagicteams.data.PlayerBindingData.BindingMode;
-import dev.ftb.bloodmagicteams.network.BMTeamsNetwork;
-import dev.ftb.bloodmagicteams.network.BindingModePacket;
+import com.breakinblocks.bloodmagicteams.BloodMagicTeams;
+import com.breakinblocks.bloodmagicteams.data.PlayerBindingData.BindingMode;
+import com.breakinblocks.bloodmagicteams.network.BMTeamsNetwork;
+import com.breakinblocks.bloodmagicteams.network.BindingModePacket;
 import dev.ftb.mods.ftblibrary.icon.Color4I;
 import dev.ftb.mods.ftblibrary.ui.BaseScreen;
 import dev.ftb.mods.ftblibrary.ui.Button;

@@ -1,4 +1,4 @@
-package dev.ftb.bloodmagicteams.config;
+package com.breakinblocks.bloodmagicteams.config;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 

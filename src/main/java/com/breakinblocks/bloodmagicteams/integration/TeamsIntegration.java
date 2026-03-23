@@ -1,6 +1,6 @@
-package dev.ftb.bloodmagicteams.integration;
+package com.breakinblocks.bloodmagicteams.integration;
 
-import dev.ftb.bloodmagicteams.BloodMagicTeams;
+import com.breakinblocks.bloodmagicteams.BloodMagicTeams;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.fml.ModList;
 

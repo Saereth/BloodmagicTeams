@@ -1,13 +1,13 @@
-package dev.ftb.bloodmagicteams.events;
+package com.breakinblocks.bloodmagicteams.events;
 
-import dev.ftb.bloodmagicteams.BloodMagicTeams;
-import dev.ftb.bloodmagicteams.config.BMTeamsConfig;
-import dev.ftb.bloodmagicteams.data.PlayerBindingData;
-import dev.ftb.bloodmagicteams.data.PlayerBindingData.BindingMode;
-import dev.ftb.bloodmagicteams.data.PlayerBindingData.BindingPreference;
-import dev.ftb.bloodmagicteams.integration.TeamsIntegration;
-import dev.ftb.bloodmagicteams.network.BMTeamsNetwork;
-import dev.ftb.bloodmagicteams.network.OpenBindingScreenPacket;
+import com.breakinblocks.bloodmagicteams.BloodMagicTeams;
+import com.breakinblocks.bloodmagicteams.config.BMTeamsConfig;
+import com.breakinblocks.bloodmagicteams.data.PlayerBindingData;
+import com.breakinblocks.bloodmagicteams.data.PlayerBindingData.BindingMode;
+import com.breakinblocks.bloodmagicteams.data.PlayerBindingData.BindingPreference;
+import com.breakinblocks.bloodmagicteams.integration.TeamsIntegration;
+import com.breakinblocks.bloodmagicteams.network.BMTeamsNetwork;
+import com.breakinblocks.bloodmagicteams.network.OpenBindingScreenPacket;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;

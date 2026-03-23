@@ -1,6 +1,6 @@
-package dev.ftb.bloodmagicteams.events;
+package com.breakinblocks.bloodmagicteams.events;
 
-import dev.ftb.bloodmagicteams.integration.TeamsIntegration;
+import com.breakinblocks.bloodmagicteams.integration.TeamsIntegration;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;

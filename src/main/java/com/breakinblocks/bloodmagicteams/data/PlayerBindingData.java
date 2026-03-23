@@ -1,4 +1,4 @@
-package dev.ftb.bloodmagicteams.data;
+package com.breakinblocks.bloodmagicteams.data;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;

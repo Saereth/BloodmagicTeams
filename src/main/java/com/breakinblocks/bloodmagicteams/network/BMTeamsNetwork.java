@@ -1,6 +1,6 @@
-package dev.ftb.bloodmagicteams.network;
+package com.breakinblocks.bloodmagicteams.network;
 
-import dev.ftb.bloodmagicteams.BloodMagicTeams;
+import com.breakinblocks.bloodmagicteams.BloodMagicTeams;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.NetworkRegistry;

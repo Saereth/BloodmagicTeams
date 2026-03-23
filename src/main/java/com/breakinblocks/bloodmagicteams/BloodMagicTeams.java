@@ -1,11 +1,11 @@
-package dev.ftb.bloodmagicteams;
+package com.breakinblocks.bloodmagicteams;
 
-import dev.ftb.bloodmagicteams.commands.BMTeamsCommands;
-import dev.ftb.bloodmagicteams.config.BMTeamsConfig;
-import dev.ftb.bloodmagicteams.events.TeamEventHandler;
-import dev.ftb.bloodmagicteams.events.TooltipEventHandler;
-import dev.ftb.bloodmagicteams.integration.TeamsIntegration;
-import dev.ftb.bloodmagicteams.network.BMTeamsNetwork;
+import com.breakinblocks.bloodmagicteams.commands.BMTeamsCommands;
+import com.breakinblocks.bloodmagicteams.config.BMTeamsConfig;
+import com.breakinblocks.bloodmagicteams.events.TeamEventHandler;
+import com.breakinblocks.bloodmagicteams.events.TooltipEventHandler;
+import com.breakinblocks.bloodmagicteams.integration.TeamsIntegration;
+import com.breakinblocks.bloodmagicteams.network.BMTeamsNetwork;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;

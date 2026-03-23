@@ -1,6 +1,6 @@
-package dev.ftb.bloodmagicteams.network;
+package com.breakinblocks.bloodmagicteams.network;
 
-import dev.ftb.bloodmagicteams.ui.BindingModeScreen;
+import com.breakinblocks.bloodmagicteams.ui.BindingModeScreen;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;

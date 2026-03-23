@@ -1,6 +1,6 @@
-package dev.ftb.bloodmagicteams.integration;
+package com.breakinblocks.bloodmagicteams.integration;
 
-import dev.ftb.bloodmagicteams.team.BMTeamsProperties;
+import com.breakinblocks.bloodmagicteams.team.BMTeamsProperties;
 import dev.ftb.mods.ftbteams.api.FTBTeamsAPI;
 import dev.ftb.mods.ftbteams.api.Team;
 import dev.ftb.mods.ftbteams.api.TeamManager;

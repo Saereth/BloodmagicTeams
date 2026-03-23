@@ -1,6 +1,6 @@
-package dev.ftb.bloodmagicteams.team;
+package com.breakinblocks.bloodmagicteams.team;
 
-import dev.ftb.bloodmagicteams.BloodMagicTeams;
+import com.breakinblocks.bloodmagicteams.BloodMagicTeams;
 import dev.ftb.mods.ftbteams.api.Team;
 import dev.ftb.mods.ftbteams.api.TeamRank;
 import dev.ftb.mods.ftbteams.api.event.TeamEvent;

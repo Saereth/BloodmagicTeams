@@ -1,4 +1,4 @@
-package dev.ftb.bloodmagicteams.team;
+package com.breakinblocks.bloodmagicteams.team;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.StringRepresentable;

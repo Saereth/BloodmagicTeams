@@ -1,10 +1,10 @@
-package dev.ftb.bloodmagicteams.network;
+package com.breakinblocks.bloodmagicteams.network;
 
-import dev.ftb.bloodmagicteams.BloodMagicTeams;
-import dev.ftb.bloodmagicteams.data.PlayerBindingData;
-import dev.ftb.bloodmagicteams.data.PlayerBindingData.BindingMode;
-import dev.ftb.bloodmagicteams.events.TeamEventHandler;
-import dev.ftb.bloodmagicteams.integration.TeamsIntegration;
+import com.breakinblocks.bloodmagicteams.BloodMagicTeams;
+import com.breakinblocks.bloodmagicteams.data.PlayerBindingData;
+import com.breakinblocks.bloodmagicteams.data.PlayerBindingData.BindingMode;
+import com.breakinblocks.bloodmagicteams.events.TeamEventHandler;
+import com.breakinblocks.bloodmagicteams.integration.TeamsIntegration;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
