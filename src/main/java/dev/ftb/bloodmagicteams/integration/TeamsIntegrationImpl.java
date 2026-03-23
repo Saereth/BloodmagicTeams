@@ -93,6 +93,19 @@ class TeamsIntegrationImpl {
     }
 
     /**
+     * Get all non-player (party/server) team IDs and their names.
+     */
+    static java.util.Map<UUID, String> getAllTeams() {
+        java.util.Map<UUID, String> result = new java.util.LinkedHashMap<>();
+        for (Team team : FTBTeamsAPI.api().getManager().getTeams()) {
+            if (!team.isPlayerTeam()) {
+                result.put(team.getId(), team.getName().getString());
+            }
+        }
+        return result;
+    }
+
+    /**
      * Register team properties.
      */
     static void registerProperties() {

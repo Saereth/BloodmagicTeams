@@ -111,6 +111,17 @@ public class TeamsIntegration {
     }
 
     /**
+     * Gets all non-player (party/server) teams as a map of UUID to team name.
+     * @return Map of team UUID to display name, or empty map if FTB Teams is not loaded
+     */
+    public static java.util.Map<UUID, String> getAllTeams() {
+        if (!isTeamsLoaded()) {
+            return java.util.Collections.emptyMap();
+        }
+        return TeamsIntegrationImpl.getAllTeams();
+    }
+
+    /**
      * Registers team properties. Call during mod setup when FTB Teams is loaded.
      */
     public static void registerProperties() {

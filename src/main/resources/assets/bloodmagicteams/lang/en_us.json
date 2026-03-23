@@ -22,6 +22,12 @@
   "commands.bloodmagicteams.status_team": "Current binding mode: Team (automatic)",
   "commands.bloodmagicteams.status_specific_team": "Current binding mode: Team %s (automatic)",
 
+  "commands.bloodmagicteams.network.query": "Team %s has %s LP in their Soul Network",
+  "commands.bloodmagicteams.network.set": "Successfully set %s's Soul Network to %s LP",
+  "commands.bloodmagicteams.network.add": "Successfully added %s LP to %s's Soul Network",
+  "commands.bloodmagicteams.network.reset": "Successfully reset %s's Soul Network to 0 LP",
+  "commands.bloodmagicteams.network.error": "Failed to access Soul Network data",
+
   "tooltip.bloodmagicteams.team_bound": "Team Bound: %s",
   "tooltip.bloodmagicteams.personal_bound": "Personal Bound",
   "bloodmagicteams.tooltip.team_bound": "[Team Bound]",
