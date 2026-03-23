@@ -9,7 +9,7 @@ tasks.named('wrapper', Wrapper).configure {
     distributionType = Wrapper.DistributionType.BIN
 }
 
-version = mod_version
+version = "${minecraft_version}-${mod_version}"
 group = mod_group_id
 
 base {
@@ -19,7 +19,10 @@ base {
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 
 repositories {
-    mavenLocal()
+    maven {
+        name = "BreakInBlocks"
+        url = "https://maven.breakinblocks.com/releases"
+    }
     maven {
         name = "FTB Maven"
         url = "https://maven.ftb.dev/releases"
@@ -97,8 +100,8 @@ configurations {
 
 dependencies {
     // Neo Vitae - hard dependency (from mavenLocal)
-    compileOnly("com.breakinblocks.neovitae:NeoVitae:${neovitae_version}")
-    runtimeOnly("com.breakinblocks.neovitae:NeoVitae:${neovitae_version}")
+    compileOnly("com.breakinblocks.neovitae:neovitae:${neovitae_version}")
+    runtimeOnly("com.breakinblocks.neovitae:neovitae:${neovitae_version}")
 
     // FTB Teams - hard dependency
     implementation("dev.ftb.mods:ftb-teams-neoforge:${ftb_teams_version}")
@@ -149,7 +152,14 @@ publishing {
     }
     repositories {
         maven {
-            url "file://${project.projectDir}/repo"
+            name = "BreakInBlocks"
+            url = version.toString().endsWith("-SNAPSHOT") ?
+                "https://maven.breakinblocks.com/snapshots" :
+                "https://maven.breakinblocks.com/releases"
+            credentials {
+                username = System.getenv("MAVEN_USER") ?: ""
+                password = System.getenv("MAVEN_TOKEN") ?: ""
+            }
         }
     }
 }
