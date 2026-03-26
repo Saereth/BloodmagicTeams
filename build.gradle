@@ -24,6 +24,13 @@ repositories {
         url = "https://maven.breakinblocks.com/releases"
     }
     maven {
+        name = "Geckolib"
+        url = "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/"
+        content {
+            includeGroup "software.bernie.geckolib"
+        }
+    }
+    maven {
         name = "FTB Maven"
         url = "https://maven.ftb.dev/releases"
         content {
