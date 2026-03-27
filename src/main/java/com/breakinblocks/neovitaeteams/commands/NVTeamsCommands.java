@@ -6,9 +6,9 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.suggestion.Suggestions;
 import com.mojang.brigadier.suggestion.SuggestionsBuilder;
-import com.breakinblocks.neovitae.api.soul.SoulTicket;
-import com.breakinblocks.neovitae.common.datacomponent.SoulNetwork;
-import com.breakinblocks.neovitae.util.helper.SoulNetworkHelper;
+import com.breakinblocks.neovitae.api.soul.AnimaTicket;
+import com.breakinblocks.neovitae.common.datacomponent.Anima;
+import com.breakinblocks.neovitae.util.helper.AnimaHelper;
 import com.breakinblocks.neovitaeteams.NeoVitaeTeams;
 import com.breakinblocks.neovitaeteams.data.PlayerBindingData;
 import com.breakinblocks.neovitaeteams.data.PlayerBindingData.BindingMode;
@@ -228,14 +228,14 @@ public class NVTeamsCommands {
         if (teamId == null) return 0;
 
         String teamName = TeamsIntegration.getTeamNameByUuid(teamId);
-        SoulNetwork network = SoulNetworkHelper.getSoulNetwork(teamId);
+        Anima network = AnimaHelper.getAnima(teamId);
         if (network == null) {
             context.getSource().sendSuccess(() ->
                     Component.translatable("commands.neovitaeteams.network.query", teamName, 0), true);
             return 1;
         }
 
-        int amount = network.getCurrentEssence();
+        int amount = network.getCurrentEV();
         context.getSource().sendSuccess(() ->
                 Component.translatable("commands.neovitaeteams.network.query", teamName, amount), true);
         return 1;
@@ -247,13 +247,13 @@ public class NVTeamsCommands {
 
         String teamName = TeamsIntegration.getTeamNameByUuid(teamId);
         int amount = IntegerArgumentType.getInteger(context, "amount");
-        SoulNetwork network = SoulNetworkHelper.getSoulNetwork(teamId);
+        Anima network = AnimaHelper.getAnima(teamId);
         if (network == null) {
             context.getSource().sendFailure(Component.translatable("commands.neovitaeteams.network.error"));
             return 0;
         }
 
-        int setAmount = network.set(SoulTicket.create(amount), Integer.MAX_VALUE);
+        int setAmount = network.set(AnimaTicket.create(amount), Integer.MAX_VALUE);
         context.getSource().sendSuccess(() ->
                 Component.translatable("commands.neovitaeteams.network.set", teamName, setAmount), true);
         return 1;
@@ -265,13 +265,13 @@ public class NVTeamsCommands {
 
         String teamName = TeamsIntegration.getTeamNameByUuid(teamId);
         int amount = IntegerArgumentType.getInteger(context, "amount");
-        SoulNetwork network = SoulNetworkHelper.getSoulNetwork(teamId);
+        Anima network = AnimaHelper.getAnima(teamId);
         if (network == null) {
             context.getSource().sendFailure(Component.translatable("commands.neovitaeteams.network.error"));
             return 0;
         }
 
-        int added = network.add(SoulTicket.create(amount), Integer.MAX_VALUE);
+        int added = network.add(AnimaTicket.create(amount), Integer.MAX_VALUE);
         context.getSource().sendSuccess(() ->
                 Component.translatable("commands.neovitaeteams.network.add", added, teamName), true);
         return 1;
@@ -282,13 +282,13 @@ public class NVTeamsCommands {
         if (teamId == null) return 0;
 
         String teamName = TeamsIntegration.getTeamNameByUuid(teamId);
-        SoulNetwork network = SoulNetworkHelper.getSoulNetwork(teamId);
+        Anima network = AnimaHelper.getAnima(teamId);
         if (network == null) {
             context.getSource().sendFailure(Component.translatable("commands.neovitaeteams.network.error"));
             return 0;
         }
 
-        network.set(SoulTicket.create(0), Integer.MAX_VALUE);
+        network.set(AnimaTicket.create(0), Integer.MAX_VALUE);
         context.getSource().sendSuccess(() ->
                 Component.translatable("commands.neovitaeteams.network.reset", teamName), true);
         return 1;
