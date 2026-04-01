@@ -3,6 +3,7 @@
     "minVersion": "0.8",
     "package": "dev.ftb.bloodmagicteams.mixin",
     "compatibilityLevel": "JAVA_17",
+    "refmap": "bloodmagicteams.refmap.json",
     "mixins": [
         "MixinBinding",
         "MixinItemBloodOrb",

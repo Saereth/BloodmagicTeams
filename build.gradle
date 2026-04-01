@@ -2,6 +2,7 @@ plugins {
     id 'java-library'
     id 'maven-publish'
     id 'net.minecraftforge.gradle' version '[6.0.16,6.2)'
+    id 'org.spongepowered.mixin' version '0.7-SNAPSHOT'
     // id 'org.parchmentmc.librarian.forgegradle' version '1.+'
     id 'idea'
 }
@@ -50,6 +51,11 @@ minecraft {
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
+mixin {
+    add sourceSets.main, 'bloodmagicteams.refmap.json'
+    config 'bloodmagicteams.mixins.json'
+}
+
 repositories {
     maven {
         name = "Cursemaven"
@@ -96,6 +102,9 @@ repositories {
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+
+    // Mixin annotation processor for refmap generation
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
     // BloodMagic - hard dependency (from CurseForge)
     implementation fg.deobf("curse.maven:blood-magic-224791:7253333")
