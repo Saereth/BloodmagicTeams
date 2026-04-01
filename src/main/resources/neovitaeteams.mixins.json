@@ -1,0 +1,12 @@
+{
+    "required": true,
+    "minVersion": "0.8",
+    "package": "com.breakinblocks.neovitaeteams.mixin",
+    "compatibilityLevel": "JAVA_21",
+    "mixins": [
+        "MixinDivinationSigilEffect"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    }
+}
