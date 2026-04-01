@@ -51,6 +51,7 @@ public class TooltipEventHandler {
         List<Component> tooltip = event.getToolTip();
         String storedName = binding.getOwnerName();
 
+        boolean replaced = false;
         for (int i = 0; i < tooltip.size(); i++) {
             Component line = tooltip.get(i);
             String lineString = line.getString();
@@ -63,26 +64,43 @@ public class TooltipEventHandler {
                 MutableComponent newLine = Component.literal(newLineString)
                         .withStyle(line.getStyle());
                 tooltip.set(i, newLine);
-
-                // Add a team indicator line if not already present
-                boolean hasTeamIndicator = false;
-                for (Component c : tooltip) {
-                    if (c.getString().contains("[") && c.getString().contains("]")) {
-                        // Check for our team indicator
-                        String indicatorText = Component.translatable("bloodmagicteams.tooltip.team_bound").getString();
-                        if (c.getString().contains(indicatorText) || c.getString().contains("Team")) {
-                            hasTeamIndicator = true;
-                            break;
-                        }
-                    }
-                }
-
-                if (!hasTeamIndicator) {
-                    tooltip.add(i + 1, Component.translatable("bloodmagicteams.tooltip.team_bound")
-                            .withStyle(ChatFormatting.DARK_PURPLE));
-                }
+                replaced = true;
+                addTeamIndicator(tooltip, i);
                 break;
             }
         }
+
+        // Fallback: other mods (e.g. Animus) resolve the owner name client-side via player UUID lookup.
+        // When team-bound, the UUID is a team UUID which won't match any player, so they show "Unknown".
+        // Search for that and replace it with the team name.
+        if (!replaced) {
+            for (int i = 0; i < tooltip.size(); i++) {
+                Component line = tooltip.get(i);
+                String lineString = line.getString();
+
+                if (lineString.contains("Unknown")) {
+                    String newLineString = lineString.replace("Unknown", currentTeamName);
+                    MutableComponent newLine = Component.literal(newLineString)
+                            .withStyle(line.getStyle());
+                    tooltip.set(i, newLine);
+                    addTeamIndicator(tooltip, i);
+                    break;
+                }
+            }
+        }
+    }
+
+    private void addTeamIndicator(List<Component> tooltip, int afterIndex) {
+        for (Component c : tooltip) {
+            String text = c.getString();
+            if (text.contains("[") && text.contains("]")) {
+                String indicatorText = Component.translatable("bloodmagicteams.tooltip.team_bound").getString();
+                if (text.contains(indicatorText) || text.contains("Team")) {
+                    return;
+                }
+            }
+        }
+        tooltip.add(afterIndex + 1, Component.translatable("bloodmagicteams.tooltip.team_bound")
+                .withStyle(ChatFormatting.DARK_PURPLE));
     }
 }
