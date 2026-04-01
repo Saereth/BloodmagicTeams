@@ -10,6 +10,8 @@ import net.minecraft.server.level.ServerPlayer;
 import javax.annotation.Nullable;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * Implementation class that directly calls FTB Teams API.
@@ -51,16 +53,26 @@ class TeamsIntegrationImpl {
         return team1.get().getId().equals(team2.get().getId());
     }
 
+    private static Optional<Team> getTeamByID(UUID uuid) {
+        var api = FTBTeamsAPI.api();
+        if (api.isClientManagerLoaded()) {
+            return api.getClientManager().getTeamByID(uuid);
+        }
+        if (api.isManagerLoaded()) {
+            return api.getManager().getTeamByID(uuid);
+        }
+        return Optional.empty();
+    }
+
     static boolean isTeamUuid(UUID uuid) {
-        TeamManager manager = FTBTeamsAPI.api().getManager();
-        Optional<Team> team = manager.getTeamByID(uuid);
-        return team.isPresent() && !team.get().isPlayerTeam();
+        return getTeamByID(uuid)
+                .filter(team -> !team.isPlayerTeam())
+                .isPresent();
     }
 
     @Nullable
     static String getTeamNameByUuid(UUID teamUuid) {
-        return FTBTeamsAPI.api().getManager()
-                .getTeamByID(teamUuid)
+        return getTeamByID(teamUuid)
                 .map(team -> team.getName().getString())
                 .orElse(null);
     }

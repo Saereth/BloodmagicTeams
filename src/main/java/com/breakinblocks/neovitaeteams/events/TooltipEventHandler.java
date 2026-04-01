@@ -52,6 +52,7 @@ public class TooltipEventHandler {
         }
 
         // Find and update the owner line if team name changed
+        boolean replaced = false;
         if (!currentTeamName.equals(storedName)) {
             for (int i = 0; i < tooltip.size(); i++) {
                 String lineStr = tooltip.get(i).getString();
@@ -59,6 +60,21 @@ public class TooltipEventHandler {
                     // Replace with current team name
                     tooltip.set(i, Component.translatable("tooltip.neovitae.current_owner", currentTeamName)
                             .withStyle(ChatFormatting.GRAY));
+                    replaced = true;
+                    break;
+                }
+            }
+        }
+
+        // Fallback: other mods may resolve the owner name client-side via player UUID lookup.
+        // When team-bound, the UUID is a team UUID which won't match any player, so they show "Unknown".
+        if (!replaced) {
+            for (int i = 0; i < tooltip.size(); i++) {
+                String lineStr = tooltip.get(i).getString();
+                if (lineStr.contains("Unknown")) {
+                    String newLineStr = lineStr.replace("Unknown", currentTeamName);
+                    tooltip.set(i, Component.literal(newLineStr)
+                            .withStyle(tooltip.get(i).getStyle()));
                     break;
                 }
             }
