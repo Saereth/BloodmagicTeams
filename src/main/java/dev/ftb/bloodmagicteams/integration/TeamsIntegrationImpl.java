@@ -20,28 +20,36 @@ import java.util.UUID;
 class TeamsIntegrationImpl {
 
     static Optional<UUID> getTeamId(ServerPlayer player) {
-        return FTBTeamsAPI.api().getManager()
+        var api = FTBTeamsAPI.api();
+        if (!api.isManagerLoaded()) return Optional.empty();
+        return api.getManager()
                 .getTeamForPlayer(player)
                 .filter(team -> !team.isPlayerTeam()) // Only return party teams, not solo player teams
                 .map(Team::getId);
     }
 
     static Optional<String> getTeamName(ServerPlayer player) {
-        return FTBTeamsAPI.api().getManager()
+        var api = FTBTeamsAPI.api();
+        if (!api.isManagerLoaded()) return Optional.empty();
+        return api.getManager()
                 .getTeamForPlayer(player)
                 .filter(team -> !team.isPlayerTeam())
                 .map(team -> team.getName().getString());
     }
 
     static boolean isOnTeam(ServerPlayer player) {
-        return FTBTeamsAPI.api().getManager()
+        var api = FTBTeamsAPI.api();
+        if (!api.isManagerLoaded()) return false;
+        return api.getManager()
                 .getTeamForPlayer(player)
                 .filter(team -> !team.isPlayerTeam())
                 .isPresent();
     }
 
     static boolean areOnSameTeam(ServerPlayer player1, ServerPlayer player2) {
-        TeamManager manager = FTBTeamsAPI.api().getManager();
+        var api = FTBTeamsAPI.api();
+        if (!api.isManagerLoaded()) return false;
+        TeamManager manager = api.getManager();
         Optional<Team> team1 = manager.getTeamForPlayer(player1).filter(t -> !t.isPlayerTeam());
         Optional<Team> team2 = manager.getTeamForPlayer(player2).filter(t -> !t.isPlayerTeam());
 
@@ -80,7 +88,9 @@ class TeamsIntegrationImpl {
      * Check if a player can bind to their team based on the team's restriction setting.
      */
     static boolean canBindToTeam(ServerPlayer player) {
-        TeamManager manager = FTBTeamsAPI.api().getManager();
+        var api = FTBTeamsAPI.api();
+        if (!api.isManagerLoaded()) return false;
+        TeamManager manager = api.getManager();
         Optional<Team> teamOpt = manager.getTeamForPlayer(player)
                 .filter(team -> !team.isPlayerTeam());
 
