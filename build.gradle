@@ -4,6 +4,7 @@ plugins {
     id 'net.minecraftforge.gradle' version '[6.0.16,6.2)'
     id 'org.spongepowered.mixin' version '0.7-SNAPSHOT'
     // id 'org.parchmentmc.librarian.forgegradle' version '1.+'
+    id 'me.modmuss50.mod-publish-plugin' version '1.1.0'
     id 'idea'
 }
 
@@ -175,7 +176,14 @@ publishing {
     }
     repositories {
         maven {
-            url "file://${project.projectDir}/repo"
+            name = "BreakInBlocks"
+            url = version.toString().endsWith("-SNAPSHOT") ?
+                "https://maven.breakinblocks.com/snapshots" :
+                "https://maven.breakinblocks.com/releases"
+            credentials {
+                username = System.getenv("MAVEN_USER") ?: ""
+                password = System.getenv("MAVEN_TOKEN") ?: ""
+            }
         }
     }
 }
@@ -184,5 +192,39 @@ idea {
     module {
         downloadSources = true
         downloadJavadoc = true
+    }
+}
+
+// Mod publishing to CurseForge and Modrinth (GitHub releases handled by CI)
+publishMods {
+    file = tasks.named('jar', Jar).flatMap { it.archiveFile }
+    def changelogFile = file("metadata/changelogs/${mod_version}.md")
+    changelog = changelogFile.exists() ? changelogFile.text : "Release ${version}"
+    type = STABLE
+    modLoaders.add("forge")
+
+    curseforge {
+        projectId = "1403315"
+        projectSlug = "blood-magic-teams"
+        accessToken = providers.environmentVariable("CURSEFORGE_TOKEN")
+        minecraftVersions.add(minecraft_version)
+        requires("blood-magic", "ftb-teams-forge", "ftb-library-forge", "architectury-api")
+        optional("jei")
+    }
+
+    modrinth {
+        projectId = "v7OCk8aB"
+        accessToken = providers.environmentVariable("MODRINTH_TOKEN")
+        minecraftVersions.add(minecraft_version)
+        requires("blood-magic", "ftb-teams", "ftb-library", "architectury-api")
+        optional("jei")
+    }
+}
+
+// Include Maven publish when running publishMods
+tasks.named('publishMods') {
+    def mavenUser = providers.environmentVariable("MAVEN_USER")
+    if (mavenUser.isPresent()) {
+        dependsOn 'publishMavenJavaPublicationToBreakInBlocksRepository'
     }
 }
